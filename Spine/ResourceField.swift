@@ -36,6 +36,8 @@ open class Field {
 	fileprivate var _serializedName: String?
 	
 	var isReadOnly: Bool = false
+    
+    var isUpdatable: Bool = true
 
 	fileprivate init() {}
 	
@@ -53,6 +55,11 @@ open class Field {
 		isReadOnly = true
 		return self
 	}
+    
+    public func notUpdatable() -> Self {
+        isUpdatable = false
+        return self
+    }
 }
 
 // MARK: - Built in fields
