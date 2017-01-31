@@ -260,7 +260,7 @@ class SaveOperation: ConcurrentOperation {
 		} else {
 			url = router.urlForQuery(Query(resource: resource))
 			method = "PATCH"
-			options = [.IncludeID]
+            options = [.IncludeID, .OmitNullValues]
 		}
 		
 		let payload: Data
