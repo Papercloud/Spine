@@ -16,7 +16,7 @@ public typealias JSONAPIData = [String: Any]
 open class Spine {
 
 	/// The router that builds the URLs for requests.
-	let router: Router
+	public let router: Router
 
 	/// The HTTPClient that performs the HTTP requests.
 	public let networkClient: NetworkClient
@@ -99,7 +99,7 @@ open class Spine {
 	/// This sets the spine property of the operation to this Spine instance.
 	///
 	/// - parameter operation: The operation to enqueue.
-	func addOperation(_ operation: ConcurrentOperation) {
+	public func addOperation(_ operation: ConcurrentOperation) {
 		operation.spine = self
 		operationQueue.addOperation(operation)
 	}
@@ -415,7 +415,7 @@ public extension Spine {
 ///
 /// - success: The operation succeeded with the given result.
 /// - failure: The operation failed with the given error.
-enum Failable<T, E: Error> {
+public enum Failable<T, E: Error> {
 	case success(T)
 	case failure(E)
 
@@ -427,7 +427,7 @@ enum Failable<T, E: Error> {
 		self = .failure(error)
 	}
 
-	var error: E? {
+	public var error: E? {
 		switch self {
 		case .failure(let error):
 			return error

@@ -8,11 +8,11 @@
 
 import Foundation
 
-fileprivate func statusCodeIsSuccess(_ statusCode: Int?) -> Bool {
+public func statusCodeIsSuccess(_ statusCode: Int?) -> Bool {
 	return statusCode != nil && 200 ... 299 ~= statusCode!
 }
 
-fileprivate extension Error {
+public extension Error {
 	///  Promotes the rror to a SpineError.
 	///  Errors that cannot be represented as a SpineError will be returned as SpineError.unknownError
 	var asSpineError: SpineError {
@@ -49,15 +49,15 @@ Operating against a Spine
 =========================
 The `Spine` instance variable references the Spine against which to operate.
 */
-public class ConcurrentOperation: Operation {
-	enum State: String {
+open class ConcurrentOperation: Operation {
+	public enum State: String {
 		case ready = "isReady"
 		case executing = "isExecuting"
 		case finished = "isFinished"
 	}
 	
 	/// The current state of the operation
-	var state: State = .ready {
+	open var state: State = .ready {
 		willSet {
 			willChangeValue(forKey: newValue.rawValue)
 			willChangeValue(forKey: state.rawValue)
@@ -67,16 +67,16 @@ public class ConcurrentOperation: Operation {
 			didChangeValue(forKey: state.rawValue)
 		}
 	}
-	override public var isReady: Bool {
+	override open var isReady: Bool {
 		return super.isReady && state == .ready
 	}
-	override public var isExecuting: Bool {
+	override open var isExecuting: Bool {
 		return state == .executing
 	}
-	override public var isFinished: Bool {
+	override open var isFinished: Bool {
 		return state == .finished
 	}
-	override public var isAsynchronous: Bool {
+	override open var isAsynchronous: Bool {
 		return true
 	}
 	
@@ -94,7 +94,7 @@ public class ConcurrentOperation: Operation {
 		return spine.serializer
 	}
 	
-	override init() {}
+	override public init() {}
 	
 	final override public func start() {
 		if isCancelled {
@@ -109,7 +109,7 @@ public class ConcurrentOperation: Operation {
 		execute()
 	}
 	
-	func execute() {}
+	open func execute() {}
 }
 
 
