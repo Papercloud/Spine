@@ -139,7 +139,7 @@ public protocol Resource: class, NSObjectProtocol {  // NSCoding,
     init()
 }
 
-extension Resource {
+public extension Resource {
 //    static var fields: [Field] {
 //        return []
 //    }
@@ -305,7 +305,7 @@ extension Resource {
 }
 
 // Instance counterparts of class functions
-extension Resource {
+public extension Resource {
 	final var resourceType: ResourceType { return type(of: self).resourceType }
 	final var fields: [Field] { return type(of: self).fields }
 }
