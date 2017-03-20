@@ -81,16 +81,16 @@ open class ConcurrentOperation: Operation {
 	}
 	
 	/// The Spine instance to operate against.
-	var spine: Spine!
+	open var spine: Spine!
 	
 	/// Convenience variables that proxy to their spine counterpart
-	var router: Router {
+	open var router: Router {
 		return spine.router
 	}
-	var networkClient: NetworkClient {
+	open var networkClient: NetworkClient {
 		return spine.networkClient
 	}
-	var serializer: Serializer {
+	open var serializer: Serializer {
 		return spine.serializer
 	}
 	
