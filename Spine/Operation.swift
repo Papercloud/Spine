@@ -251,12 +251,12 @@ class SaveOperation: ConcurrentOperation {
 		if isNewResource {
 			url = router.urlForResourceType(resource.resourceType)
             
-            if let URLString = resource.URL?.absoluteString {
+            if let URLString = resource.url?.absoluteString {
                 //Temporary solution for https://github.com/wvteijlingen/Spine/issues/93
                 //Since we can't create a Query without an id
-                URL = NSURL(string: URLString, relativeToURL: router.baseURL)!
+                url = NSURL(string: URLString, relativeToURL: router.baseURL)!
             } else {
-                URL = router.URLForResourceType(resource.resourceType)
+                url = router.URLForResourceType(resource.resourceType)
             }
 			method = "POST"
 			if let idGenerator = spine.idGenerator {
