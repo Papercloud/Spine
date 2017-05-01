@@ -249,11 +249,18 @@ class SaveOperation: ConcurrentOperation {
 		let options: SerializationOptions
 		
 		if isNewResource {
-			url = router.urlForResourceType(resource.resourceType)
+            if let URLString = resource.url?.absoluteString {
+                //Temporary solution for https://github.com/wvteijlingen/Spine/issues/93
+                //Since we can't create a Query without an id
+                url = URL(string: URLString, relativeTo: router.baseURL)!
+            } else {
+                url = router.urlForResourceType(resource.resourceType)
+            }
+            
 			method = "POST"
 			if let idGenerator = spine.idGenerator {
 				resource.id = idGenerator(resource)
-				options = [.IncludeToOne, .IncludeToMany, .IncludeID]
+				options = [.IncludeToOne, .IncludeToMany, .IncludeID, .OmitNullValues]
 			} else {
 				options = [.IncludeToOne, .IncludeToMany]
 			}
