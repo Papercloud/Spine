@@ -47,7 +47,7 @@ The HTTPClient implements the NetworkClient protocol to work over an HTTP connec
 open class HTTPClient: NetworkClient {
 	open var delegate: HTTPClientDelegate?
 	let urlSession: URLSession
-	var headers: [String: String] = ["Content-Type": "application/json"]
+	var headers: [String: String] = ["Content-Type": "application/vnd.api+json"]
 	
 	/**
 	Initializes an HTTPClient with the given URLSession.
